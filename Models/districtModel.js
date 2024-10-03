@@ -1,27 +1,27 @@
 const { DataTypes } = require("sequelize");
 const sequelize = require("../config/db");
 
-const Category = sequelize.define(
-  "Category",
+const District = sequelize.define(
+  "District",
   {
-    cate_id: {
+    district_id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true,
     },
-    cate_name: {
+    district_name: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    cate_seo_url: {
+    district_image: {
       type: DataTypes.STRING,
       allowNull: false,
     },
   },
   {
     timestamps: false,
-    tableName: "categories",
+    tableName: "districts",
   }
 );
 
-module.exports = Category;
+module.exports = District;

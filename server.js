@@ -3,7 +3,10 @@ const cors = require('cors');
 const dotenv = require('dotenv');
 const addsRouter = require('./Routers/addsRouter');
 const offersRouter = require('./Routers/offersRouter.js'); // Import offers router
-const dsRouter = require('./Routers/dsRouter.js') // Import adds router
+const dsRouter = require('./Routers/dsRouter.js')
+const districtRoutes = require("./Routers/districtRouter.js");
+const searchRoutes = require("./Routers/searchRouter.js");
+ // Import adds router
 // const { sequelize } = require('./Models/addsModel'); // Import Sequelize connection
 const path = require('path'); 
 const sequelize = require('./config/db.js')
@@ -44,6 +47,8 @@ app.use('/dialus/api',mailRouter)
 app.use('/dialus/api/categories', categoriesRouter);
 app.use('/dialus/api/offers', offersRouter);
 app.use('/dialus/api/dscollection', dsRouter);
+app.use("/dialus/api/districts", districtRoutes);
+app.use("/dialus/api/search", searchRoutes);
 
 
 // Server setup

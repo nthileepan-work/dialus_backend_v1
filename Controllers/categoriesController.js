@@ -1,4 +1,4 @@
-const Category = require('../Models/categoriesModel'); // Adjust the path if needed
+const Category = require('../Models/categoriesModel_ki'); // Adjust the path if needed
 
 // Get paginated categories where cate_status is 1 (only cate_id and cate_name)
 exports.getCategories = async (req, res) => {
