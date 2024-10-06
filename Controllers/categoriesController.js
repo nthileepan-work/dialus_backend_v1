@@ -1,5 +1,5 @@
 const Category = require('../Models/categoriesModel_ki'); // Adjust the path if needed
-
+const { Op } = require('sequelize');
 // Get paginated categories where cate_status is 1 (only cate_id and cate_name)
 exports.getCategories = async (req, res) => {
   let { limit = 20, offset = 0 } = req.query; // Default to 20 categories initially and offset starts at 0
@@ -20,6 +20,33 @@ exports.getCategories = async (req, res) => {
   } catch (error) {
     console.error('Error retrieving categories:', error); // Log the error to the console
     res.status(500).json({ message: 'Internal server error' }); // Send a 500 response
+  }
+};
+
+exports.getCategorieSearch = async (req, res) => {
+  let { limit = 20, offset = 0, search = '' } = req.query;
+
+  // Ensure limit and offset are numbers
+  limit = parseInt(limit);
+  offset = parseInt(offset);
+
+  try {
+    const categories = await Category.findAll({
+      attributes: ['cate_id', 'cate_name'], // Fetch only required fields
+      where: {
+        cate_status: 1, // Only fetch active categories
+        cate_name: { 
+          [Op.like]: `%${search}%` // Match category names based on search query
+        }
+      },
+      limit,
+      offset,
+    });
+
+    res.status(200).json(categories); // Send categories as JSON response
+  } catch (error) {
+    console.error('Error retrieving categories:', error); // Log the error
+    res.status(500).json({ message: 'Internal server error hello' }); // 500 response for server error
   }
 };
 

@@ -6,6 +6,15 @@ const offersRouter = require('./Routers/offersRouter.js'); // Import offers rout
 const dsRouter = require('./Routers/dsRouter.js')
 const districtRoutes = require("./Routers/districtRouter.js");
 const searchRoutes = require("./Routers/searchRouter.js");
+const freeListingRoutes = require('./Routers/freeListingRoutes_thil.js');
+const cityRoutes = require('./Routers/cityRoutes_thil.js');
+const districtRoutes_thil = require('./Routers/districtRoutes_thil.js');
+const category_thi = require('./Routers/category_thi.js')
+const addRoutes_nive = require('./Routers/addsRouter_nive.js');
+const offerRoutes_nive = require('./Routers/offersRouter_nive.js');
+const dscollectionRoutes_nive = require('./Routers/dscollectionRouter_nive.js');
+const joinRouter = require('./Routers/joinRouter_subo.js');
+const districtsRouter_subo = require('./Routers/districtsRouter_subo');
  // Import adds router
 // const { sequelize } = require('./Models/addsModel'); // Import Sequelize connection
 const path = require('path'); 
@@ -26,7 +35,7 @@ dotenv.config();
 // Serve the images folder
 app.use('/dialus/api/images', express.static(path.join(__dirname, 'images')));
 
-
+app.use('/dialus/api/uploads', express.static('uploads'));
 
 // Connect to MySQL
 sequelize.authenticate()
@@ -49,6 +58,21 @@ app.use('/dialus/api/offers', offersRouter);
 app.use('/dialus/api/dscollection', dsRouter);
 app.use("/dialus/api/districts", districtRoutes);
 app.use("/dialus/api/search", searchRoutes);
+
+//thil
+app.use('/dialus/api/category', category_thi)
+app.use('/dialus/api/freelisting', freeListingRoutes);
+app.use('/dialus/api/cities', cityRoutes);
+app.use('/dialus/api/districts', districtRoutes_thil);
+
+//nive
+app.use('/dialus/api/adds', addRoutes_nive);
+app.use('/dialus/api/offers', offerRoutes_nive);
+app.use('/dialus/api/dscollection', dscollectionRoutes_nive);
+
+// subo
+app.use ('/dialus/api/join', joinRouter);
+app.use ('/dialus/api/district', districtsRouter_subo);
 
 
 // Server setup

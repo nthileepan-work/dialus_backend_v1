@@ -23,7 +23,7 @@ module.exports = sequelize;
 
 
 
-// // db.js (in the config folder)
+// // // db.js (in the config folder)
 // const { Sequelize } = require('sequelize');
 
 // // Set up a connection to MySQL
